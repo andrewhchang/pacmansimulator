@@ -1,4 +1,4 @@
-#Pacman Simulator
+# Pacman Simulator
 
-##Description
+## Description
 A command-line based pacman simulator. 
