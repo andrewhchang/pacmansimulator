@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-# Pacman class
 require 'grid'
 require 'position'
-
+# Pacman class
 class Pacman
   attr_accessor :position
   # Pacman should be assigned to a given grid when first created
@@ -31,7 +30,7 @@ class Pacman
   end
 
   # If pacman is placed, create new Position based on facing direction
-  # Validate new Position against table dimensions
+  # Validate new Position against grid dimensions
   # If valid, assign position to Pacman, else ignore.
   def move
     if !@position.nil?
@@ -46,7 +45,7 @@ class Pacman
       when 'WEST'
         candidate_position.x -= 1
       end
-      if table.validate_position(candidate_position)
+      if grid.validate_position(candidate_position)
         @position = candidate_position
       else 'Invalid move'
       end
