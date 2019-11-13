@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org' do
-  gem 'rspec' # For testing
+  gem 'rspec', '~> 3.6' # For testing
 end
