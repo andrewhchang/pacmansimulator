@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'grid'
 
 describe Grid do
   let(:grid) { Grid.new(5, 5) }
   context 'is given valid position' do
-    let(:position) { instance_double('Position', x: 2, y: 2, facing: 'EAST') }
+    let(:position) { Position.new(2, 2, 'EAST') }
     describe '#validate_position' do
       it 'returns true' do
         expect(grid.validate_position(position)).to be true

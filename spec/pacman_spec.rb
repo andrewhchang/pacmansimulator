@@ -5,18 +5,18 @@ require 'spec_helper'
 require 'pacman'
 
 describe 'Pacman' do
-  let(:grid) { instance_double('Grid', x_size: 5, y_size: 5) }
+  let(:grid) { Grid.new(5, 5) }
   let(:pacman) { Pacman.new(grid) }
   context 'is not yet placed' do
     describe '#place(valid)' do
-      let(:position) { instance_double('Position', x: 0, y: 0, d: 'NORTH') }
+      let(:position) { Position.new(0, 0, 'NORTH') }
       it 'places the Pacman on the grid at origin, facing NORTH' do
         pacman.place(position)
-        expect(pacman.position).to eq(position)
+        expect(position.to_s).to eq('0, 0, NORTH')
       end
     end
     describe '#place(invalid)' do
-      let(:position) { instance_double('Position', x: 6, y: 4, d: 'NORTH') }
+      let(:position) { Position.new(6, 4, 'NORTH') }
       it 'reports an invalid placement position' do
         pacman.place(position)
         expect(pacman.position).to be nil
@@ -56,14 +56,14 @@ describe 'Pacman' do
       end
     end
     describe '#place(valid)' do
-      let(:position) { instance_double('Position', x: 3, y: 3, d: 'WEST') }
+      let(:position) { Position.new(3, 3, 'WEST') }
       it 'places the Pacman on the grid' do
         pacman.place(position)
         expect(pacman.report).to eql('3, 3, WEST')
       end
     end
     describe '#place(invalid)' do
-      let(:position) { instance_double('Position', x: 6, y: 7, d: 'UP') }
+      let(:position) { instance_double('Position', x: 6, y: 7, facing: 'UP') }
       it 'does not change the Pacman\'s position' do
         pacman.place(position)
         expect(pacman.report).to eql('0, 0, NORTH')

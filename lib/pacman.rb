@@ -2,6 +2,7 @@
 
 require 'grid'
 require 'position'
+
 # Pacman class
 class Pacman
   attr_accessor :position
@@ -13,7 +14,7 @@ class Pacman
 
   # Only assign Pacman's position if PLACE command is valid, else nil.
   def place(position)
-    if grid.validate_position(position)
+    if @grid.validate_position(position)
       @position = position
     else
       'Position is invalid'
@@ -34,18 +35,8 @@ class Pacman
   # If valid, assign position to Pacman, else ignore.
   def move
     if !@position.nil?
-      candidate_position = @position
-      case candidate_position.facing
-      when 'NORTH'
-        candidate_position.y += 1
-      when 'SOUTH'
-        candidate_position.y -= 1
-      when 'EAST'
-        candidate_position.x += 1
-      when 'WEST'
-        candidate_position.x -= 1
-      end
-      if grid.validate_position(candidate_position)
+      candidate_position = @position.forward_move
+      if @grid.validate_position(candidate_position)
         @position = candidate_position
       else 'Invalid move'
       end
@@ -54,6 +45,9 @@ class Pacman
     end
   end
 
+  # Request to update Pacman's facing direction
+  # No need for validity check - if Pacman has a position,
+  # then all facing directions are valid
   def left
     if !@position.nil?
       @position.rotate_left
