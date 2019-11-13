@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'grid'
-require 'position'
+require_relative 'grid'
+require_relative 'position'
 
 # Pacman class
 class Pacman
@@ -16,6 +16,7 @@ class Pacman
   def place(position)
     if @grid.validate_position(position)
       @position = position
+      'Pacman has been placed.'
     else
       'Position is invalid'
     end
@@ -35,9 +36,10 @@ class Pacman
   # If valid, assign position to Pacman, else ignore.
   def move
     if !@position.nil?
-      candidate_position = @position.forward_move
+      candidate_position = @position.dup.forward_move
       if @grid.validate_position(candidate_position)
         @position = candidate_position
+        'Pacman moved 1 unit forward'
       else 'Invalid move'
       end
     else
@@ -51,6 +53,7 @@ class Pacman
   def left
     if !@position.nil?
       @position.rotate_left
+      'Pacman turned left.'
     else
       'Pacman is not yet placed'
     end
@@ -59,6 +62,7 @@ class Pacman
   def right
     if !@position.nil?
       @position.rotate_right
+      'Pacman turned right'
     else
       'Pacman is not yet placed'
     end

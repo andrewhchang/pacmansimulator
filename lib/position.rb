@@ -48,6 +48,6 @@ class Position
 
   # Override to_s method
   def to_s
-    "#{@x}, #{@y}, #{@facing}"
+    "#{@x},#{@y},#{@facing}"
   end
 end
