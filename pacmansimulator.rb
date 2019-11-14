@@ -17,5 +17,19 @@ loop do
   input = gets.chomp.upcase
   break if input.upcase.eql? 'EXIT'
 
+  if input.eql?('RUN TEST_SUITE')
+    tests = File.open('test_cases/test_suite.txt')
+    puts ''
+    tests.each do |line|
+      if line.chomp.empty?
+        puts ''
+        next
+      end
+      puts 'Invalid Command' unless command.run(line.chomp)
+    end
+    tests.close
+    break
+  end
+
   puts 'Invalid Command' unless command.run(input)
 end

@@ -38,13 +38,9 @@ Once you have Ruby 2.3+ installed, clone repo with the following:
 
     ```ruby pacmansimulator.rb```
 
-<<<<<<< HEAD
 5. Run unit tests with
 
-    ```rspec``
-=======
-**Run unit tests with** `rspec`
->>>>>>> 4b09aae... Update README.md
+    ```rspec```
 
 ## Usage
 There are 6 commands in total available.
@@ -60,3 +56,10 @@ This will place the Pacman at x-coordinate 2, y-coordinate 3, facing WEST.
 - `RIGHT` will rotate the Pacman 90 degrees to face the direction on its right.
 - `REPORT` will return the Pacman's position in the format `X,Y,F`.
 - `EXIT` will terminate the program.
+
+## Test Data
+Once in the simulator, the test suite can be run by entering the command:
+
+```run test_suite```
+
+The simulator will exit after the test suite has been run. The expected outputs can be found in `test_cases/expected_outputs.txt`.
