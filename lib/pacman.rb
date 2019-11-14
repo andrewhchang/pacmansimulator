@@ -40,7 +40,7 @@ class Pacman
       if @grid.validate_position(candidate_position)
         @position = candidate_position
         'Pacman moved 1 unit forward'
-      else 'Invalid move'
+      else 'Cannot move here'
       end
     else
       'Pacman is not yet placed'

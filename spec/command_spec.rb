@@ -12,7 +12,7 @@ describe Command do
   context 'when user inputs a valid command' do
     describe '#run' do
       it 'executes the PLACE command' do
-        input = 'PLACE 0, 0, NORTH'
+        input = 'PLACE 0,0,NORTH'
         expect(command.run(input)).to be true
       end
       it 'executes the MOVE command' do
@@ -32,7 +32,19 @@ describe Command do
   context 'when user inputs an invalid command' do
     describe '#run' do
       it 'rejects incorrect PLACE command' do
-        input = 'PLACES 0, 0, NORTH'
+        input = 'PLACES 0,0,NORTH'
+        expect(command.run(input)).to be false
+      end
+      it 'rejects incorrect PLACE syntax' do
+        input = 'PLACE 0, 0, NORTH'
+        expect(command.run(input)).to be false
+      end
+      it 'rejects PLACE(without space) no coords given' do
+        input = 'PLACE'
+        expect(command.run(input)).to be false
+      end
+      it 'rejects nil input' do
+        input = ''
         expect(command.run(input)).to be false
       end
       it 'rejects incorrect MOVE command' do

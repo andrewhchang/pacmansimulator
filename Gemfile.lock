@@ -15,12 +15,14 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
+    rufo (0.3.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   rspec (~> 3.6)!
+  rufo!
 
 BUNDLED WITH
    2.0.2

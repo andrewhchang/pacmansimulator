@@ -10,30 +10,62 @@ class Command
   end
 
   def run(input)
-    return false unless input.is_a?(String) && !input.nil?
+    return false if input.nil?
 
-    # split the input into 2 strings (our params), execute if
-    # first string is one of our valid commands, else reject
-    parameters = input.upcase.split(' ', 2)
+    parameters = parse_input(input)
+    # Reject if input not contained in valid_commands
     return false unless @valid_commands.include?(parameters[0])
 
-    case parameters[0]
-    when 'PLACE'
-      place_params = parameters[1].split(',')
-      @pacman.place(Position.new(
-                      place_params[0].to_i,
-                      place_params[1].to_i,
-                      place_params[2]
-                    ))
-    when 'MOVE'
-      puts @pacman.move
-    when 'RIGHT'
-      puts @pacman.right
-    when 'LEFT'
-      puts @pacman.left
-    when 'REPORT'
-      puts @pacman.report
+    # If input contained two words, first word MUST be 'PLACE'
+    # execute other commands only if they're valid AND one string.
+    begin
+      if parameters[0].eql?('PLACE') &&
+         parameters.size == 2
+        place_params = parse_coords(parameters[1])
+        puts @pacman.place(Position.new(
+                             place_params[0],
+                             place_params[1],
+                             place_params[2]
+                           ))
+        return true
+      end
+    rescue NoMethodError
+      return false
     end
-    true
+    # Will only return true if nothing else is placed after
+    # valid command
+    if parameters.size == 1
+      case parameters[0]
+      when 'PLACE'
+        return false
+      when 'MOVE'
+        puts @pacman.move
+      when 'RIGHT'
+        puts @pacman.right
+      when 'LEFT'
+        puts @pacman.left
+      when 'REPORT'
+        puts @pacman.report
+      end
+      return true
+    end
+    false
+  end
+
+  def parse_input(input)
+    # If input has a space in it
+    # split the input into 2 strings (our params)
+    # (case insensitive)
+    parameters = []
+    if input.match(' ')
+      parameters = input.split(' ', 2)
+    else
+      parameters << input
+    end
+    parameters
+  end
+
+  def parse_coords(coords)
+    coords.split(',')
   end
 end

@@ -25,7 +25,7 @@ describe Position do
   end
   describe '#to_s' do
     it 'returns string containing the x, y coords and facing direction' do
-      expect(position.to_s).to eql('2, 2, NORTH')
+      expect(position.to_s).to eql('2,2,NORTH')
     end
   end
 end

@@ -16,11 +16,11 @@ class Grid
   # Check the bounds of the position with the Grid x and y size
   # return true if position is valid within all bounds and positive.
   def validate_position(position)
-    return false unless position.is_a?(Position)
+    return false unless position.is_a?(Position) && !position.nil?
 
     position.x <= @x_size &&
-    position.y <= @y_size &&
-    position.x >= 0       &&
-    position.y >= 0
+      position.y <= @y_size &&
+      position.x >= 0       &&
+      position.y >= 0
   end
 end
