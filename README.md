@@ -63,3 +63,6 @@ Once in the simulator, the test suite can be run by entering the command:
 ```run test_suite```
 
 The simulator will exit after the test suite has been run. The expected outputs can be found in `test_cases/expected_outputs.txt`.
+
+
+***Acknowledgement of error:*** In my original submission, I made an error in calculating the grid size. The grid was instantiated to be of dimensions 5x5. Taking into account zero-based indexing, this would make the grid dimensions 6 units in length, not 5. I've amended my code and README as an acknowledgement of this change.

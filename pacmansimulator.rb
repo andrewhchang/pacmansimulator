@@ -9,7 +9,7 @@ require_relative 'lib/command'
 grid = Grid.new(5, 5)
 pacman = Pacman.new(grid)
 command = Command.new(pacman)
-puts "The grid size is #{grid.x_size}x#{grid.y_size}."
+puts "The grid size is #{grid.x_size + 1}x#{grid.y_size + 1}."
 puts 'PLACE the robot to begin.'
 puts 'Please enter a command'
 loop do

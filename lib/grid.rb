@@ -9,8 +9,10 @@ class Grid
 
   # Initialize table with an X and Y dimension
   def initialize(x_size, y_size)
-    @x_size = x_size
-    @y_size = y_size
+    unless x_size < 1 || y_size < 1
+      @x_size = x_size - 1
+      @y_size = y_size - 1
+    end
   end
 
   # Check the bounds of the position with the Grid x and y size
